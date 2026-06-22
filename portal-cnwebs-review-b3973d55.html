@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息索引 · leyu 整理笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f4f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1d2b3a;
+            line-height: 1.6;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉卡片 —— 柔和引语 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.2rem;
+            border: 1px solid #eaeef2;
+            position: relative;
+        }
+
+        .hero-card h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            color: #0e1b29;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-card h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6b7a8c;
+            background: #f0f3f7;
+            padding: 0.12rem 0.7rem;
+            border-radius: 30px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-tagline {
+            font-size: 1.18rem;
+            color: #3b4b5c;
+            max-width: 70%;
+            margin-bottom: 1.4rem;
+            border-left: 4px solid #b7c9d9;
+            padding-left: 1.2rem;
+            background: #f8fafc;
+            border-radius: 0 8px 8px 0;
+            line-height: 1.5;
+        }
+
+        .hero-card p {
+            color: #3c5063;
+            font-size: 1rem;
+            max-width: 80%;
+        }
+
+        /* 通用卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2rem 0 2.4rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem 1.8rem;
+            flex: 1 1 260px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e7ecf0;
+            transition: box-shadow 0.2s ease, transform 0.1s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: #132433;
+            margin-bottom: 0.9rem;
+            border-bottom: 2px solid #e4ecf3;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .card ul, .card p {
+            font-size: 0.98rem;
+            color: #33485e;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #7e95ab;
+            font-weight: 600;
+        }
+
+        /* 自然链接段落（卡片式） */
+        .link-block {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #e4eaf0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            margin: 2rem 0 2.2rem;
+        }
+
+        .link-block p {
+            font-size: 1.04rem;
+            color: #1f3140;
+            max-width: 85%;
+        }
+
+        .link-block a {
+            color: #1f5980;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #cbd9e6;
+            padding-bottom: 0.08rem;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .link-block a:hover {
+            color: #0a3857;
+            border-bottom-color: #0a3857;
+        }
+
+        /* 适合人群双栏 */
+        .people-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            margin: 1.2rem 0 2rem;
+        }
+
+        .people-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            flex: 1 1 200px;
+            border: 1px solid #e2e9f0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+        }
+
+        .people-card h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #1b3142;
+            margin-bottom: 0.5rem;
+        }
+
+        .people-card p {
+            color: #40566b;
+            font-size: 0.96rem;
+        }
+
+        /* 小提示 / faq 摘要 */
+        .faq-mini {
+            background: #f7faff;
+            border-radius: 30px;
+            padding: 1.4rem 2rem;
+            margin: 2.2rem 0 1rem;
+            border: 1px solid #dce6ef;
+        }
+
+        .faq-mini h4 {
+            font-weight: 450;
+            font-size: 1rem;
+            color: #1b2c3d;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini p {
+            color: #334a60;
+            font-size: 0.95rem;
+            max-width: 80%;
+        }
+
+        .faq-mini a {
+            color: #1f5980;
+            text-decoration: none;
+            border-bottom: 1px dotted #b3c8db;
+        }
+
+        .faq-mini a:hover {
+            border-bottom-style: solid;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            font-size: 0.85rem;
+            color: #6f8398;
+            border-top: 1px solid #dce3eb;
+            padding-top: 1.4rem;
+            text-align: left;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero-card h1 {
+                font-size: 1.8rem;
+                flex-wrap: wrap;
+            }
+
+            .hero-tagline {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .hero-card p {
+                max-width: 100%;
+            }
+
+            .link-block p {
+                max-width: 100%;
+            }
+
+            .faq-mini p {
+                max-width: 100%;
+            }
+
+            .card-grid {
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉 -->
+    <div class="hero-card">
+        <h1>
+            ✦ leyu
+            <small>信息整理 · 索引手记</small>
+        </h1>
+        <div class="hero-tagline">
+            把零散的内容梳理成可翻阅的卡片——不追求速度，更在意条理。
+        </div>
+        <p>
+            从日常浏览与记录中沉淀，围绕 <strong>leyu</strong> 整理了一批要点与场景，
+            方便自己回看，也分享给需要的人。
+        </p>
+    </div>
+
+    <!-- 用途卡片 × 3 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>📋 快速索引</h3>
+            <ul>
+                <li>模块分类清晰，可批量查阅</li>
+                <li>条目式记录，减少重复翻找</li>
+                <li>保留关键标签与时间戳</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🗂️ 场景覆盖</h3>
+            <ul>
+                <li>日常信息收集与归类</li>
+                <li>项目前期资料调研</li>
+                <li>个人笔记与参照存档</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🔖 轻量维护</h3>
+            <ul>
+                <li>不需要复杂工具，卡片即内容</li>
+                <li>定期微调，保持可读性</li>
+                <li>适合小团队或个人使用</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接句子（嵌入 a 标签） -->
+    <div class="link-block">
+        <p>
+            如果你也在整理某个方向的内容，可以把 <a href="https://portal-cnwebs-leyu.com">leyu</a> 作为一个参考源——
+            它的结构偏向平实，没有过多装饰，适合直接用来搭建自己的信息索引。
+        </p>
+    </div>
+
+    <!-- 适合人群（两卡片） -->
+    <div class="people-row">
+        <div class="people-card">
+            <h4>📌 信息收集者</h4>
+            <p>经常需要汇总多来源资料，希望有一个不花哨但够用的归档方式。</p>
+        </div>
+        <div class="people-card">
+            <h4>📌 内容回顾者</h4>
+            <p>希望定期回看自己记录的内容，而不是保存后再也不打开。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 + 第二个链接（也可自然嵌入句子）-->
+    <div class="faq-mini">
+        <h4>❔ 几句 FAQ 摘要</h4>
+        <p>
+            <strong>Q:</strong> 这个索引面向哪类内容？<br>
+            <strong>A:</strong> 偏向实用信息与列表型资料，也包含少量评注。
+        </p>
+        <p style="margin-top: 0.8rem;">
+            <strong>Q:</strong> 可以在此基础上扩充吗？<br>
+            <strong>A:</strong> 完全可以，它的设计就是用来被修改和补充的，例如你可以复制 <a href="https://portal-cnwebs-leyu.com">leyu</a> 的卡片思路来整理自己的项目。
+        </p>
+    </div>
+
+    <!-- 页面脚注 -->
+    <div class="footer-note">
+        <span>本次页面方向：信息卡片式 · 索引笔记 · 版本 2025</span>
+    </div>
+
+</div>
+</body>
+</html>
